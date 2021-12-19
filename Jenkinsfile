@@ -4,7 +4,7 @@ pipeline{
 
     stages{
 
-        stage{"Build"}{
+        stage('Build'){
             steps{
                 sh '''
                     ./jenkins/build/mvn.sh mvn -B -DskipTests clean package
@@ -12,17 +12,17 @@ pipeline{
                 '''
             }
         }
-        stage{'Test'}{
+        stage('Test'){
             steps{
                 sh "./jenkins/test/mvn.sh mvn test"
             }
         }
-        stage{'Push'}{
+        stage('Push'){
             steps{
                 sh "./jenkins/push/push.sh"
             }
         }
-        stage{'Deploy'}{
+        stage('Deploy'){
             steps{
                 sh "./jenkins/push/deploy.sh"
             }
